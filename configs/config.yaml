@@ -1,0 +1,32 @@
+server:
+  grpc_port: 50051
+  rest_port: 8080
+
+runtime:
+  model_path: "models/model.onnx"
+  onnx_lib_path: "third_party/onnxruntime/lib/libonnxruntime.dylib"
+  inter_op_threads: 2
+  intra_op_threads: 4
+
+pipeline:
+  num_workers: 4
+  batch_size: 32
+  batch_timeout_ms: 10
+  channel_buffer: 256
+
+kafka:
+  brokers:
+    - "localhost:9092"
+  topic: "inference-requests"
+  group_id: "gopherbrain-workers"
+
+redis:
+  addr: "localhost:6379"
+  password: ""
+  db: 0
+  ttl_seconds: 3600
+
+observability:
+  log_level: "info"
+  metrics_port: 9090
+  jaeger_endpoint: "http://localhost:4318"
