@@ -1,0 +1,41 @@
+# Binaries
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+/bin/
+/build/
+
+# Test
+*.test
+*.out
+coverage.html
+
+# Dependencies
+/vendor/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Environment
+.env
+.env.local
+
+# ONNX models (large files)
+*.onnx
+!test/testdata/dummy.onnx
+
+# Debug
+__debug_bin*
+
+# ONNX Runtime (downloaded)
+/third_party/
