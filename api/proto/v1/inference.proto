@@ -1,0 +1,27 @@
+syntax = "proto3";
+package gopherbrain.v1;
+
+option go_package = "github.com/ImKDO/GopherBrain/api/proto/v1;pbv1";
+
+message Tensor {
+  repeated int64 shape = 1;
+  repeated float data  = 2;
+}
+
+message InferRequest {
+  string  request_id = 1;
+  string  model_id   = 2;
+  Tensor  input      = 3;
+  map<string, string> metadata = 4;
+}
+
+message InferResponse {
+  string  request_id  = 1;
+  Tensor  output      = 2;
+  double  latency_ms  = 3;
+}
+
+service InferenceService {
+  rpc Infer(InferRequest) returns (InferResponse);
+  rpc InferStream(stream InferRequest) returns (stream InferResponse);
+}
